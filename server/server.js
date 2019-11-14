@@ -2,15 +2,17 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const env = require("dotenv").config({
-  path: path.join(__dirname, `../.env.${process.env.NODE_ENV}`)
+    path: path.join(__dirname, `../.env.${process.env.NODE_ENV}`)
 });
 
 if (env.error) {
-  throw env.error;
+    throw env.error;
 }
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: `${process.env.PROTOCOL}://${process.env.HOST}:${process.env.CLIENT_PORT}`
+}));
 
 const PORT = process.env.SERVER_PORT || 3001;
 
