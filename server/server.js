@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const env = require("dotenv").config({
-  path: path.join(__dirname, "../.env")
+  path: path.join(__dirname, `../.env.${process.env.NODE_ENV}`)
 });
 
 if (env.error) {
