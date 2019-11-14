@@ -1,9 +1,10 @@
 import React from "react";
+import { getServer } from "./getHost";
 
 function App() {
   const [response, setResponse] = React.useState();
   React.useEffect(() => {
-    fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}`)
+    fetch(getServer())
       .then(raw => raw.text())
       .then(res => setResponse(res));
   }, []);
